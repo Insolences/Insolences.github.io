@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link href="../styles/styles.css" rel="stylesheet" type="text/css">
+    <link href="/slick/slick.css" rel="stylesheet" type="text/css" />
+</head>
+<body >
+    <div class="wrapper" id="wrapper">
+        <div class="content">
+            <header class="header">
+            <div class="logo">
+                <a href="../index.html"><img src="../images/logo.png" alt="logo"></a>
+                <div class="logo-name">
+                    <a href="../index.html"><span class="black-color">Фото</span><span class="yellow-color">Маг</span></a>
+                    <a href="../index.html"><p>Интернет-магазин фотокамер</p></a>
+                </div>
+            </div>
+            <div class="basket">
+                <a href="cart.html" id="cart"><img src="../images/cart.png" alt="cart"></a>
+            </div>
+            <nav class="nav" id="header-nav">
+                <ul class="list">
+                    <li><a href="../index.html" class="list__link list__link--active">Главная</a></li>
+                    <li><a href="cameras.html" class="list__link">Цифровые камеры</a></li>
+                    <li><a href="lensess.html" class="list__link">Линзы и аксесуары</a></li>
+                    <li><a href="contacts.html" class="list__link">Контакты</a></li>
+                </ul>
+                <p>Звоните +3(800)000 00 00</p>
+                <button class="hamburger" id="jsBurger">
+                    <span class="hamburger__icon"></span>
+                </button>
+            </nav>
+        </header>
+            <main class="main">
+                <div id="my-cart" class="my-cart">
+
+                </div>
+                <button class="cart-send-btn"> Оформить </button>
+            </main>
+
+        </div>
+        <div class="footer">
+            <div class="footer-box">
+                <p class="footer-font-8">Свяжитесь с нами</p>
+                <p class="footer-font-6">ул. Арбат, 1а, Москва,</p>
+                <p class="footer-font-6">119019, Россия. Тел. +7 (495) 000-00-00</p>
+                <p><a href="#"> info@mysite.ru</a></p>
+            </div>
+            <div class="footer-box">
+                <p class="footer-font-8">Обслуживание клиентов</p>
+                <p><span><a href="contacts.html">Контакты</a></span>/<span><a href="faq.html">Доставка</a></span></p>
+                <p><span><a href="faq.html">Возврат</a></span>/<span><a href="faq.html">Оплата и гарантия</a></span></p>
+            </div>
+            <div class="footer-box">
+                <p class="footer-font-8">Мы принимаем</p>
+                <a href="#"><img src="/images/visa.png" alt="visa" class="visa"></a>
+                <a href="#"><img src="/images/MasterCard.png" alt="mastercard" class="mastercard"></a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../slick/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>loadCart()</script>
+</body>
+</html>

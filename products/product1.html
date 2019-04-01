@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product1</title>
+    <link href="/styles/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../slick/slick.css"/>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <header class="header">
+                <div class="logo">
+                    <a href="../index.html"><img src="../images/logo.png" alt="logo"></a>
+                    <div class="logo-name">
+                        <a href="../index.html"><span class="black-color">Фото</span><span class="yellow-color">Маг</span></a>
+                        <a href="../index.html"><p>Интернет-магазин фотокамер</p></a>
+                    </div>
+                </div>
+                <div class="basket">
+                    <a href="/pages/cart.html" id="cart"><img src="../images/cart.png" alt="cart"></a>
+                </div>
+                <nav class="nav" id="header-nav">
+                    <ul class="list">
+                        <li><a href="../index.html" class="list__link list__link--active">Главная</a></li>
+                        <li><a href="../pages/cameras.html" class="list__link">Цифровые камеры</a></li>
+                        <li><a href="../pages/lensess.html" class="list__link">Линзы и аксесуары</a></li>
+                        <li><a href="../pages/contacts.html" class="list__link">Контакты</a></li>
+                    </ul>
+                    <p>Звоните +3(800)000 00 00</p>
+                    <button class="hamburger" id="jsBurger">
+                        <span class="hamburger__icon"></span>
+                    </button>
+                </nav>
+            </header>
+            <main class="main">
+                <p class="history"><span><a href="../index.html">Главная</a></span> / <span><a href="../pages/cameras.html">Цифровые камеры</a></span> / <span><a href="product1.html">Ваш товар</a></span></p>
+                <div id="product-body" class="product1">
+                    <div id="product-img" class="product-img">
+                    </div>
+                    <div class="description-product">
+                        <div>
+                            <h4 id="product-title"></h4>
+                            <p id="product-article" class="article"></p>
+                            <p id="product-price" class="price"></p>
+                            <button id="add-to-cart" class="add-cart-button" type="button">Добавить в корзину</button>
+                        </div>
+                        <div class="discription">
+                            <h5>О ТОВАРЕ</h5>
+                            <p id="product-desc"></p>
+                        </div>
+                        <div class="discription">
+                            <h5>ПОЛИТИКА ВОЗВРАТА</h5>
+                            <p>Это правила и условия возврата товара и денег. Расскажите посетителям, что нужно сделать, если они захотят вернуть товар и получить назад свои деньги. Четкая и ясная политика возврата — это хороший способ построить доверительные отношения с клиентами.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="footer">
+            <div class="footer-box">
+                <p class="footer-font-8">Свяжитесь с нами</p>
+                <p class="footer-font-6">ул. Арбат, 1а, Москва,</p>
+                <p class="footer-font-6">119019, Россия. Тел. +7 (495) 000-00-00</p>
+                <p><a href="#"> info@mysite.ru</a></p>
+            </div>
+            <div class="footer-box">
+                <p class="footer-font-8">Обслуживание клиентов</p>
+                <p><span><a href="../pages/contacts.html">Контакты</a></span>/<span><a href="#">Доставка</a></span></p>
+                <p><span><a href="../pages/faq.html">Возврат</a></span>/<span><a href="#">Оплата и гарантия</a></span></p>
+            </div>
+            <div class="footer-box">
+                <p class="footer-font-8">Мы принимаем</p>
+                <a href="#"><img src="../images/visa.png" alt="visa" class="visa"></a>
+                <a href="#"><img src="../images/MasterCard.png" alt="mastercard" class="mastercard"></a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/slick/slick.min.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        async function loadProduct(id) {
+          let data = await fetch('/products/' + id + '.json');
+          if (data.status !== 200) {
+            const productBody = document.getElementById('product-body');
+            productBody.innerHTML = '<h1>Ошибка 404 - страница не найдена</h1>';
+
+            return;
+          }
+
+          let product = await data.json();
+
+          const title = document.getElementById('product-title');
+          const article = document.getElementById('product-article');
+          const price = document.getElementById('product-price');
+          const desc = document.getElementById('product-desc');
+          const imgBlock = document.getElementById('product-img');
+
+          title.innerHTML = product.name;
+          article.innerHTML = 'Артикль: ' + product.article;
+          price.innerHTML = '$' + product.cost;
+          desc.innerHTML = product.description;
+
+          const img = document.createElement('img');
+          img.src = product.image;
+
+          imgBlock.appendChild(img);
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        const addToCartButton = document.getElementById('add-to-cart');
+        addToCartButton.setAttribute('data-art', id);
+
+        addToCartButton.addEventListener('click', addToCart);
+        loadProduct(id);
+    </script>
+</body>
+</html>
