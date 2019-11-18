@@ -3,10 +3,9 @@ let cart = cartJson ? JSON.parse(cartJson) : {};
 
 function loadCart() {
   $.getJSON('/products/all.json', function (data) {
-    let goods = data; //все товары в массиве
-    //console.log(goods);
+    let goods = data;
     checkCart();
-    showCart(); //Вывожу товары на страницу
+    showCart();
 
     function showCart() {
       if ($.isEmptyObject(cart)) {
@@ -42,7 +41,7 @@ function loadCart() {
     function plusGoods() {
       let articul = $(this).attr('data-art');
       cart[articul]++;
-      saveCartToLS(); //сохраняю корзину в LocalStorage
+      saveCartToLS();
       showCart();
     }
 
@@ -68,20 +67,17 @@ function loadCart() {
 }
 
 function addToCart() {
-  //добавляем товар в корзину
   let articul = $(this).attr('data-art');
-  if (cart[articul]!=undefined){
+  if (cart[articul]!==undefined){
     cart[articul]++;
   }
   else{
     cart[articul] = 1;
   }
   localStorage.setItem('cart', JSON.stringify(cart));
-  console.log(cart);
 }
 
 function checkCart() {
-  //Проверяю наличие корзины в localStorage;
   if(localStorage.getItem('cart')!= null) {
     cart = JSON.parse(localStorage.getItem('cart'));
   }
